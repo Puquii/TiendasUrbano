@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiendas Urbano - Login y Mi Cuenta</title>
+    <!-- Carga de Tailwind CSS para el diseño rápido y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Lucide Icons para los iconos modernos -->
+    <script type="module" src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Paleta de Colores personalizada según especificaciones */
+        :root {
+            --color-primary: #9e1e4c;
+            --color-secondary: #ff1168;
+            --color-dark-bg: #25020f;
+            --color-light-bg: #ececec;
+            --color-text-secondary: #8f8f8f;
+        }
+
+        /* Configuración de Tailwind usando la paleta */
+        .tailwind-config {
+            display: none; /* Oculta este elemento */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': 'var(--color-primary)',
+                        'secondary': 'var(--color-secondary)',
+                        'dark-bg': 'var(--color-dark-bg)',
+                        'light-bg': 'var(--color-light-bg)',
+                        'text-secondary': 'var(--color-text-secondary)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+
+        /**
+         * Lógica de la aplicación
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa los iconos de Lucide
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Mapeo de vistas (contenedores principales)
+            const views = {
+                'login-register': document.getElementById('login-register-view'),
+                'dashboard': document.getElementById('dashboard-view')
+            };
+            
+            // Mapeo de subsecciones del dashboard
+            const dashboardSections = {
+                'personales': document.getElementById('personales-section'),
+                'pagos': document.getElementById('pagos-section'),
+                'historial': document.getElementById('historial-section'),
+                'seguimiento': document.getElementById('seguimiento-section')
+            };
+
+            // Estado de la aplicación
+            let currentView = 'login-register';
+            let currentDashboardSection = 'personales';
+
+            /**
+             * Muestra una vista principal y oculta las demás.
+             * @param {string} viewName - El nombre de la vista a mostrar ('login-register' o 'dashboard').
+             */
+            function showView(viewName) {
+                currentView = viewName;
+                Object.keys(views).forEach(key => {
+                    views[key].classList.toggle('hidden', key !== viewName);
+                });
+                // Si cambiamos al dashboard, aseguramos que la sección correcta esté visible
+                if (viewName === 'dashboard') {
+                    showDashboardSection(currentDashboardSection);
+                }
+            }
+
+            /**
+             * Muestra una sección específica del dashboard y actualiza la navegación.
+             * @param {string} sectionName - El nombre de la sección a mostrar.
+             */
+            window.showDashboardSection = function(sectionName) {
+                currentDashboardSection = sectionName;
+                
+                // Mostrar/Ocultar secciones
+                Object.keys(dashboardSections).forEach(key => {
+                    dashboardSections[key].classList.toggle('hidden', key !== sectionName);
+                });
+
+                // Actualizar estilos de la barra lateral (Desktop)
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('bg-primary', 'text-white');
+                    link.classList.add('text-text-secondary', 'hover:bg-gray-100');
+                    if (link.dataset.section === sectionName) {
+                        link.classList.add('bg-primary', 'text-white', 'hover:bg-primary');
+                        link.classList.remove('text-text-secondary', 'hover:bg-gray-100');
+                    }
+                });
+
+                // Actualizar estilos de la barra inferior (Mobile - no implementada, pero buena práctica)
+                // Se podría implementar lógica similar para un menú tipo tab bar.
+            }
+
+            // Enlaces de navegación
+            document.getElementById('go-to-dashboard').addEventListener('click', () => showView('dashboard'));
+            document.getElementById('go-to-login').addEventListener('click', () => showView('login-register'));
+            
+            // Manejar la visualización de la contraseña
+            document.getElementById('toggle-password')?.addEventListener('click', function() {
+                const passwordInput = document.getElementById('password-input');
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Cambiar el icono
+                const iconElement = this.querySelector('svg');
+                if (iconElement) {
+                    iconElement.setAttribute('data-lucide', type === 'text' ? 'eye-off' : 'eye');
+                    lucide.createIcons(); // Vuelve a renderizar el icono
+                }
+            });
+
+            // Lógica para cambiar entre Login y Registro (simplificada)
+            const loginTitle = document.getElementById('login-title');
+            const registerLink = document.getElementById('register-link');
+            const mainButton = document.getElementById('main-form-button');
+
+            registerLink?.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isLogin = loginTitle.textContent.includes('Bienvenida');
+                if (isLogin) {
+                    loginTitle.textContent = "Crea tu cuenta en Tiendas Urbano";
+                    registerLink.innerHTML = '¿Ya tienes cuenta? <span class="font-semibold text-secondary hover:text-primary">Inicia Sesión aquí</span>';
+                    mainButton.textContent = "Regístrate";
+                } else {
+                    loginTitle.textContent = "Bienvenida a Tiendas Urbano";
+                    registerLink.innerHTML = '¿No tienes cuenta? <span class="font-semibold text-secondary hover:text-primary">Regístrate aquí</span>';
+                    mainButton.textContent = "Iniciar Sesión";
+                }
+            });
+
+            // Mostrar la vista inicial al cargar
+            showView('login-register');
+            showDashboardSection('personales'); // Asegurar que la sección inicial esté seleccionada
+        });
+    </script>
+</head>
+
+<body class="bg-light-bg font-sans">
+
+    <!-- HEADER (Fondo Oscuro y Elementos de Navegación) -->
+    <header class="fixed top-0 left-0 w-full bg-dark-bg text-white shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-xl font-extrabold tracking-wider" href="index.html">
+                TIENDAS <span class="text-secondary">URBANO</span>
+            </div>
+
+            <!-- Iconos de Usuario y Carrito -->
+            <nav class="flex items-center space-x-4">
+                <!-- Icono de Hamburguesa (Solo mobile/tablet) -->
+                <button class="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <!-- Favoritos -->
+                <button class="p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <i data-lucide="heart" class="w-6 h-6"></i>
+                </button>
+                <!-- Perfil/Usuario (Usa un botón para ir al dashboard/login) -->
+                <button id="go-to-dashboard" class="p-2 rounded-full hover:bg-white/10 transition-colors" title="Mi Cuenta">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                </button>
+                <!-- Carrito de Compras -->
+                <button class="p-2 rounded-full bg-primary hover:bg-secondary transition-colors relative">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-secondary rounded-full">3</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-16 min-h-screen">
+        
+        <!-- VISTA DE LOGIN / REGISTRO -->
+        <div id="login-register-view" class="p-4 sm:p-8 lg:p-12">
+            <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden">
+                <div class="flex flex-col lg:flex-row min-h-[70vh]">
+                    
+                    <!-- Columna Izquierda: Imagen y Banner (60% Desktop / Oculto en Mobile) -->
+                    <div class="hidden lg:block lg:w-3/5 bg-cover bg-center p-8 relative" 
+                         style="background-image: url('https://placehold.co/1000x800/9e1e4c/ffffff?text=Elegancia+Urbana');">
+                        <div class="absolute inset-0 bg-dark-bg opacity-40"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-end text-white">
+                            <h2 class="text-4xl font-bold mb-4 leading-snug">Descubre la Nueva Colección 'Spring Flow'</h2>
+                            <p class="text-lg">Moda juvenil, sostenible y con estilo propio. ¡Regístrate y obtén 20% de descuento!</p>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Formulario (40% Desktop / 100% Mobile) -->
+                    <div class="w-full lg:w-2/5 p-8 sm:p-12 flex items-center justify-center bg-white">
+                        <div class="w-full max-w-md">
+                            <h1 id="login-title" class="text-3xl font-bold mb-6 text-dark-bg text-center">
+                                Bienvenida a Tiendas Urbano
+                            </h1>
+
+                            <form class="space-y-5">
+                                <!-- Campo Email -->
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="email" placeholder="tu.email@ejemplo.com" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary transition duration-150">
+                                </div>
+                                
+                                <!-- Campo Contraseña -->
+                                <div>
+                                    <label for="password-input" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                                    <div class="relative">
+                                        <input type="password" id="password-input" placeholder="Ingresa tu contraseña" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary transition duration-150">
+                                        <button type="button" id="toggle-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-primary transition-colors">
+                                            <i data-lucide="eye" class="w-5 h-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Enlace de olvido de contraseña -->
+                                <div class="text-right">
+                                    <a href="#" class="text-sm font-medium text-text-secondary hover:text-primary transition-colors">
+                                        ¿Olvidaste tu contraseña?
+                                    </a>
+                                </div>
+
+                                <!-- Botón Principal: Iniciar Sesión -->
+                                <button type="submit" id="main-form-button" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-lg font-semibold text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out">
+                                    Iniciar Sesión
+                                </button>
+                            </form>
+
+                            <!-- Separador Social Login -->
+                            <div class="mt-6 flex items-center">
+                                <span class="w-full border-t border-gray-300"></span>
+                                <span class="px-3 text-sm font-medium text-text-secondary whitespace-nowrap">o continúa con</span>
+                                <span class="w-full border-t border-gray-300"></span>
+                            </div>
+
+                            <!-- Botones Social Login -->
+                            <div class="mt-6 space-y-3">
+                                <button class="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_de_Google_%282015%29.svg" alt="Google Logo" class="w-5 h-5 mr-3">
+                                    Continuar con Google
+                                </button>
+                                <button class="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" class="w-5 h-5 mr-3">
+                                    Continuar con Microsoft
+                                </button>
+                            </div>
+                            
+                            <!-- Enlace de Registro -->
+                            <div class="mt-6 text-center text-sm">
+                                <a href="#" id="register-link" class="text-gray-700">
+                                    ¿No tienes cuenta? <span class="font-semibold text-secondary hover:text-primary transition-colors">Regístrate aquí</span>
+                                </a>
+                            </div>
+
+                            <!-- Botón Secundario: Navegar sin registrarme -->
+                            <button class="w-full mt-4 flex justify-center py-3 px-4 border-2 border-primary rounded-lg shadow-sm text-md font-semibold text-primary hover:bg-primary hover:text-white transition duration-300 ease-in-out">
+                                <a href="../index.html">Continuar Navegando Sin Registrarme</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- VISTA DE MI CUENTA (DASHBOARD) -->
+        <div id="dashboard-view" class="p-4 sm:p-8 lg:p-12 hidden">
+            <div class="max-w-7xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden min-h-[70vh]">
+                <h1 class="text-3xl font-bold p-6 border-b border-light-bg text-dark-bg">Mi Cuenta</h1>
+
+                <div class="flex flex-col lg:flex-row">
+                    
+                    <!-- Sidebar de Navegación (Desktop) -->
+                    <nav class="lg:w-64 border-r border-light-bg p-4 flex-shrink-0">
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="#" class="sidebar-link flex items-center p-3 rounded-lg transition-colors bg-primary text-white" data-section="personales" onclick="showDashboardSection('personales')">
+                                    <i data-lucide="user" class="w-5 h-5 mr-3"></i>
+                                    Mis Datos Personales
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link flex items-center p-3 rounded-lg transition-colors text-text-secondary hover:bg-gray-100" data-section="pagos" onclick="showDashboardSection('pagos')">
+                                    <i data-lucide="credit-card" class="w-5 h-5 mr-3"></i>
+                                    Mis Métodos de Pago
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link flex items-center p-3 rounded-lg transition-colors text-text-secondary hover:bg-gray-100" data-section="historial" onclick="showDashboardSection('historial')">
+                                    <i data-lucide="list-ordered" class="w-5 h-5 mr-3"></i>
+                                    Historial de Compras
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link flex items-center p-3 rounded-lg transition-colors text-text-secondary hover:bg-gray-100" data-section="seguimiento" onclick="showDashboardSection('seguimiento')">
+                                    <i data-lucide="package" class="w-5 h-5 mr-3"></i>
+                                    Seguimiento de Mis Compras
+                                </a>
+                            </li>
+                            <li class="pt-4 border-t border-light-bg mt-4">
+                                <a href="#" class="flex items-center p-3 rounded-lg transition-colors text-red-600 hover:bg-red-50" id="go-to-login" onclick="window.location.reload();">
+                                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
+                                    Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Contenido Principal del Dashboard -->
+                    <div class="flex-1 p-6 lg:p-10">
+                        
+                        <!-- SECCIÓN 1: MIS DATOS PERSONALES -->
+                        <div id="personales-section" class="w-full">
+                            <h2 class="text-2xl font-semibold mb-6 text-dark-bg border-b pb-2">Mis Datos Personales</h2>
+                            <form class="space-y-6">
+                                <!-- Filas del formulario, 2 columnas en desktop, 1 en mobile -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Nombre -->
+                                    <div>
+                                        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre *</label>
+                                        <input type="text" id="nombre" value="Andrea" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <!-- Apellidos -->
+                                    <div>
+                                        <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos *</label>
+                                        <input type="text" id="apellidos" value="Pérez Soto" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <!-- Fecha de Nacimiento -->
+                                    <div>
+                                        <label for="fechaNac" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento *</label>
+                                        <input type="date" id="fechaNac" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <!-- RUT -->
+                                    <div>
+                                        <label for="rut" class="block text-sm font-medium text-gray-700">RUT *</label>
+                                        <input type="text" id="rut" value="12.345.678-9" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Ciudad -->
+                                    <div>
+                                        <label for="ciudad" class="block text-sm font-medium text-gray-700">Ciudad *</label>
+                                        <input type="text" id="ciudad" value="Santiago" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <!-- Comuna -->
+                                    <div>
+                                        <label for="comuna" class="block text-sm font-medium text-gray-700">Comuna *</label>
+                                        <input type="text" id="comuna" value="Las Condes" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <!-- Dirección -->
+                                    <div class="md:col-span-2">
+                                        <label for="direccion" class="block text-sm font-medium text-gray-700">Dirección *</label>
+                                        <input type="text" id="direccion" value="Av. Siempre Viva" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <!-- Número Casa/Depto -->
+                                    <div>
+                                        <label for="numCasa" class="block text-sm font-medium text-gray-700">Número Casa/Depto.</label>
+                                        <input type="text" id="numCasa" value="123 B" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+
+                                <!-- Botones de acción -->
+                                <div class="flex justify-end space-x-4 pt-4">
+                                    <button type="button" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors font-medium">
+                                        Editar Información
+                                    </button>
+                                    <button type="submit" class="px-6 py-2 border border-transparent rounded-lg text-white bg-primary hover:bg-secondary transition-colors font-semibold">
+                                        Guardar Cambios
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- SECCIÓN 2: MIS MÉTODOS DE PAGO -->
+                        <div id="pagos-section" class="hidden w-full">
+                            <h2 class="text-2xl font-semibold mb-6 text-dark-bg border-b pb-2">Mis Métodos de Pago</h2>
+                            
+                            <!-- Tarjetas Guardadas -->
+                            <div class="space-y-4 mb-8">
+                                <h3 class="text-lg font-medium text-dark-bg">Tarjetas Guardadas</h3>
+                                
+                                <!-- Tarjeta 1 (Predeterminada) -->
+                                <div class="flex items-center justify-between p-4 bg-light-bg border-2 border-primary rounded-lg shadow-md">
+                                    <div class="flex items-center space-x-4">
+                                        <i data-lucide="credit-card" class="w-6 h-6 text-primary"></i>
+                                        <div>
+                                            <p class="font-semibold">VISA ** 1234</p>
+                                            <p class="text-sm text-gray-500">Vencimiento: 10/26</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-white bg-primary rounded-full px-3 py-1">Predeterminada</span>
+                                </div>
+
+                                <!-- Tarjeta 2 -->
+                                <div class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                    <div class="flex items-center space-x-4">
+                                        <i data-lucide="credit-card" class="w-6 h-6 text-gray-500"></i>
+                                        <div>
+                                            <p class="font-semibold">MasterCard ** 5678</p>
+                                            <p class="text-sm text-gray-500">Vencimiento: 05/24</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-sm text-primary hover:text-secondary font-medium transition-colors">Eliminar</button>
+                                </div>
+                            </div>
+
+                            <!-- Agregar Nueva Tarjeta -->
+                            <h3 class="text-lg font-semibold mb-4 text-dark-bg border-t pt-6">Agregar Nueva Tarjeta</h3>
+                            <form class="space-y-4 p-4 border border-gray-300 rounded-lg">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Tipo de Tarjeta -->
+                                    <div>
+                                        <label for="tipoTarjeta" class="block text-sm font-medium text-gray-700">Tipo de Tarjeta</label>
+                                        <select id="tipoTarjeta" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                            <option>Visa</option>
+                                            <option>MasterCard</option>
+                                            <option>American Express</option>
+                                        </select>
+                                    </div>
+                                    <!-- Número de Tarjeta -->
+                                    <div>
+                                        <label for="numTarjeta" class="block text-sm font-medium text-gray-700">Número de Tarjeta</label>
+                                        <input type="text" id="numTarjeta" placeholder="XXXX XXXX XXXX XXXX" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <!-- Fecha de Vencimiento -->
+                                    <div class="col-span-1">
+                                        <label for="vencimiento" class="block text-sm font-medium text-gray-700">MM/AA</label>
+                                        <input type="text" id="vencimiento" placeholder="MM/AA" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    </div>
+                                    <!-- CVV -->
+                                    <div class="col-span-1 relative">
+                                        <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+                                        <input type="text" id="cvv" placeholder="XXX" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                        <i data-lucide="info" class="absolute right-3 top-8 w-4 h-4 text-gray-400 cursor-pointer" title="Código de seguridad de 3 o 4 dígitos"></i>
+                                    </div>
+                                    <div class="col-span-2 flex items-end">
+                                        <label class="flex items-center text-sm font-medium text-gray-700 mt-2">
+                                            <input type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded mr-2">
+                                            Marcar como predeterminada
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="px-6 py-2 border border-transparent rounded-lg text-white bg-primary hover:bg-secondary transition-colors font-semibold mt-4">
+                                    Guardar Tarjeta
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- SECCIÓN 3: HISTORIAL DE COMPRAS -->
+                        <div id="historial-section" class="hidden w-full">
+                            <h2 class="text-2xl font-semibold mb-6 text-dark-bg border-b pb-2">Historial de Compras</h2>
+
+                            <!-- Tarjeta de Compra 1 -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 mb-4">
+                                <div class="flex justify-between items-start border-b pb-3 mb-3">
+                                    <div>
+                                        <p class="text-sm font-medium text-text-secondary">Orden N°: <span class="text-dark-bg font-semibold">TU-20251101-0045</span></p>
+                                        <p class="text-sm text-text-secondary">Fecha: 01 de Noviembre, 2025</p>
+                                    </div>
+                                    <span class="text-sm font-bold text-white bg-green-500 rounded-full px-3 py-1">Entregado</span>
+                                </div>
+
+                                <div class="flex flex-wrap items-center justify-between">
+                                    <!-- Miniaturas de Productos -->
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://placehold.co/60x60/808080/ffffff?text=P1" alt="Producto 1" class="w-16 h-16 rounded-lg object-cover">
+                                        <img src="https://placehold.co/60x60/808080/ffffff?text=P2" alt="Producto 2" class="w-16 h-16 rounded-lg object-cover">
+                                        <span class="text-text-secondary text-sm ml-2">+1 artículo más</span>
+                                    </div>
+                                    
+                                    <!-- Detalles y Total -->
+                                    <div class="mt-4 sm:mt-0 flex flex-col sm:flex-row items-center space-x-4">
+                                        <p class="text-lg font-bold text-dark-bg">Total: $98.990</p>
+                                        <button class="px-4 py-2 border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors text-sm mt-2 sm:mt-0" onclick="showDashboardSection('seguimiento')">
+                                            Ver Detalles
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tarjeta de Compra 2 -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-md p-6 mb-4 opacity-70">
+                                <div class="flex justify-between items-start border-b pb-3 mb-3">
+                                    <div>
+                                        <p class="text-sm font-medium text-text-secondary">Orden N°: <span class="text-dark-bg font-semibold">TU-20251020-0038</span></p>
+                                        <p class="text-sm text-text-secondary">Fecha: 20 de Octubre, 2025</p>
+                                    </div>
+                                    <span class="text-sm font-bold text-white bg-green-500 rounded-full px-3 py-1">Entregado</span>
+                                </div>
+                                <p class="text-text-secondary text-center italic py-2">Lista de productos no mostrada por brevedad.</p>
+                            </div>
+
+                        </div>
+
+                        <!-- SECCIÓN 4: SEGUIMIENTO DE MIS COMPRAS -->
+                        <div id="seguimiento-section" class="hidden w-full">
+                            <h2 class="text-2xl font-semibold mb-6 text-dark-bg border-b pb-2">Seguimiento de Orden N° TU-20251118-0050</h2>
+                            
+                            <!-- Información de Despacho -->
+                            <div class="bg-light-bg p-6 rounded-lg mb-8 shadow-inner">
+                                <h3 class="text-xl font-semibold mb-3 text-dark-bg">Detalles de Envío</h3>
+                                <p class="text-sm"><span class="font-medium">Dirección:</span> Av. Siempre Viva 123 B, Las Condes, Santiago.</p>
+                                <p class="text-sm"><span class="font-medium">Tracking N°:</span> <a href="#" class="text-primary hover:underline">CL1234567890XX</a> (Correos de Chile)</p>
+                                <p class="text-sm"><span class="font-medium">Contacto Repartidor:</span> +56 9 9876 5432 (Estimado: Juan P.)</p>
+                            </div>
+
+                            <!-- Timeline Visual -->
+                            <h3 class="text-xl font-semibold mb-6 text-dark-bg">Estado de tu Pedido</h3>
+                            
+                            <ol class="relative border-l-4 border-gray-200 ml-4">                  
+                                <!-- Estado Entregado (futuro) -->
+                                <li class="mb-10 ml-6 opacity-50">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full -left-3 ring-8 ring-white">
+                                        <i data-lucide="check" class="w-4 h-4 text-gray-500"></i>
+                                    </span>
+                                    <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-500">Entregado</h3>
+                                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400">Fecha estimada: 20 de Noviembre</time>
+                                </li>
+                                <!-- Estado En Reparto (ACTUAL) -->
+                                <li class="mb-10 ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-secondary rounded-full -left-3 ring-8 ring-white animate-pulse">
+                                        <i data-lucide="truck" class="w-4 h-4 text-white"></i>
+                                    </span>
+                                    <h3 class="flex items-center mb-1 text-lg font-semibold text-dark-bg">En Reparto <span class="bg-secondary text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-3">HOY</span></h3>
+                                    <time class="block mb-2 text-sm font-normal leading-none text-gray-500">18 de Noviembre, 11:30 hrs</time>
+                                    <p class="mb-4 text-base font-normal text-gray-700">El paquete ha salido del centro de distribución local y está en camino a tu dirección.</p>
+                                </li>
+                                <!-- Estado Preparando Despacho -->
+                                <li class="mb-10 ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-green-500 rounded-full -left-3 ring-8 ring-white">
+                                        <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                    </span>
+                                    <h3 class="text-lg font-semibold text-gray-700">Preparando Despacho</h3>
+                                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400">17 de Noviembre, 18:00 hrs</time>
+                                </li>
+                                <!-- Estado Pedido Confirmado -->
+                                <li class="ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-green-500 rounded-full -left-3 ring-8 ring-white">
+                                        <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                    </span>
+                                    <h3 class="text-lg font-semibold text-gray-700">Pedido Confirmado</h3>
+                                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400">17 de Noviembre, 10:45 hrs</time>
+                                </li>
+                            </ol>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER (Simple y de Contraste) -->
+    <footer class="bg-dark-bg text-gray-400 p-4 sm:p-8 text-center mt-12">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-sm">&copy; 2025 Tiendas Urbano. Todos los derechos reservados. | <a href="#" class="hover:text-primary transition-colors">Política de Privacidad</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

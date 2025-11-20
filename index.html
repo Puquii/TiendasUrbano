@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiendas Urbano - Ropa Importada de Calidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Tiendas Urbano</span>
+                </div>
+
+                <!-- Navigation Desktop -->
+                <nav class="nav-desktop">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo/catalogo.html">Catalogo</a>
+                    <a href="#categorias">Categorías</a>
+                    <a href="#ofertas">Ofertas</a>
+                    <a href="#contacto">Contacto</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="header-actions">
+                    <button class="icon-btn hide-mobile">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn">
+                        <a href="login/login.html">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        </a>
+                    </button>
+                    <button class="icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn cart-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="cart-badge">3</span>
+                    </button>
+                    <button class="icon-btn show-mobile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="badge">Nueva Colección</div>
+                    <h1 class="hero-title">
+                        Ropa Importada de <span class="text-primary">Calidad Premium</span>
+                    </h1>
+                    <p class="hero-text">
+                        Con 10 años de experiencia importando las mejores tendencias desde China. 
+                        Compra 100% online y recibe en la comodidad de tu hogar.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#ofertas" class="btn btn-primary">
+                            Ver Ofertas
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        <a href="#categorias" class="btn btn-outline">Explorar Catálogo</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">10 Años</div>
+                            <div class="stat-label">De Experiencia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Online</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Todo Chile</div>
+                            <div class="stat-label">Envíos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1638717366457-dbcaf6b1afbc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwd29tYW4lMjBlbGVnYW50fGVufDF8fHx8MTc2MzA4OTQ4NXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Fashion model" class="hero-image">
+                    <div class="discount-badge">
+                        <div class="discount-value">-40% OFF</div>
+                        <div class="discount-text">En toda la colección</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categorias">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explora por Categoría</h2>
+                <p class="section-subtitle">Ropa femenina importada de alta calidad</p>
+            </div>
+            <div class="categories-grid">
+                <button class="category-card">
+                    <h3>Poleras</h3>
+                    <p class="category-count">80+</p>
+                </button>
+                <button class="category-card">
+                    <h3>Blazers</h3>
+                    <p class="category-count">45+</p>
+                </button>
+                <button class="category-card">
+                    <h3>Pantalones</h3>
+                    <p class="category-count">65+</p>
+                </button>
+                <button class="category-card">
+                    <h3>Parkas</h3>
+                    <p class="category-count">38+</p>
+                </button>
+                <button class="category-card">
+                    <h3>Chaquetas</h3>
+                    <p class="category-count">52+</p>
+                </button>
+                <button class="category-card">
+                    <h3>Trajes de Baño</h3>
+                    <p class="category-count">42+</p>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="products-header">
+                <div>
+                    <h2>Productos Destacados</h2>
+                    <p class="section-subtitle">Lo más vendido de esta temporada</p>
+                </div>
+                <a href="#todos" class="btn btn-outline-small">
+                    Ver Todo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1604904612715-47bf9d9bc670?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGJsYXplcnxlbnwxfHx8fDE3NjMxMzIzNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Blazer Ejecutivo Premium" class="product-image">
+                        <button class="product-favorite">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Blazer Ejecutivo Premium</h3>
+                        <div class="product-price">
+                            <span class="price-current">$45.990</span>
+                            <span class="price-original">$69.990</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1606903073578-7ca9ea9946c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBhcmthJTIwamFja2V0fGVufDF8fHx8MTc2MzEzMjM1Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Parka Acolchada Invierno" class="product-image">
+                        <button class="product-favorite">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Parka Acolchada Invierno</h3>
+                        <div class="product-price">
+                            <span class="price-current">$52.990</span>
+                            <span class="price-original">$79.990</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552902875-9ac1f9fe0c07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBhbnRzJTIwZmFzaGlvbnxlbnwxfHx8fDE3NjMxMzIzNTN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantalón Casual Elegante" class="product-image">
+                        <button class="product-favorite">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Pantalón Casual Elegante</h3>
+                        <div class="product-price">
+                            <span class="price-current">$32.990</span>
+                            <span class="price-original">$49.990</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1633626206264-c21341a34559?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHN3aW1zdWl0fGVufDF8fHx8MTc2MzEzMjM1Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Traje de Baño Verano" class="product-image">
+                        <button class="product-favorite">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Traje de Baño Verano</h3>
+                        <div class="product-price">
+                            <span class="price-current">$28.990</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Banner -->
+    <section class="offer-banner" id="ofertas">
+        <div class="offer-overlay"></div>
+        <div class="container">
+            <div class="offer-grid">
+                <div class="offer-content">
+                    <div class="badge badge-white">Oferta Especial</div>
+                    <h2 class="offer-title">Hasta 50% de Descuento en Toda la Tienda</h2>
+                    <p class="offer-text">
+                        Aprovecha nuestros precios especiales. Calidad importada a precios 
+                        increíbles para renovar tu guardarropa.
+                    </p>
+                    <a href="#" class="btn btn-white">Aprovechar Oferta</a>
+                </div>
+                <div class="offer-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1634315775834-3e1ac73de6b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHNob3BwaW5nJTIwc3R5bGV8ZW58MXx8fHwxNjMxMzE2Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Summer collection" class="offer-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping Info Section -->
+    <section class="shipping-info">
+        <div class="container">
+            <div class="shipping-grid">
+                <div class="shipping-card">
+                    <div class="shipping-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3>Envíos a Todo Chile</h3>
+                    <p>Despacho desde nuestra bodega central a Santiago y regiones</p>
+                </div>
+                <div class="shipping-card">
+                    <div class="shipping-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>100% Compra Online</h3>
+                    <p>Sin local físico. Compra cómoda desde tu casa las 24 horas</p>
+                </div>
+                <div class="shipping-card">
+                    <div class="shipping-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>10 Años de Confianza</h3>
+                    <p>Década de experiencia importando ropa de calidad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-wrapper">
+                <h2>Suscríbete a Nuestro Newsletter</h2>
+                <p class="newsletter-text">
+                    Recibe las últimas novedades y ofertas especiales directo en tu correo
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico" class="newsletter-input">
+                    <button type="submit" class="btn btn-accent">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                        </div>
+                        <span>Tiendas Urbano</span>
+                    </div>
+                    <p class="footer-description">
+                        10 años importando ropa femenina de calidad desde China. Venta 100% online.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Comprar</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Poleras</a></li>
+                        <li><a href="#">Blazers</a></li>
+                        <li><a href="#">Pantalones</a></li>
+                        <li><a href="#">Parkas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ayuda</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Tiendas Urbano. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

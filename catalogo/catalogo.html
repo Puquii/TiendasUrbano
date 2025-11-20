@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Tiendas Urbano</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="catalog-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                    </div>
+                    <a href="index.html" class="logo-text">Tiendas Urbano</a>
+                </div>
+
+                <!-- Navigation Desktop -->
+                <nav class="nav-desktop">
+                    <a href="../index.html">Inicio</a>
+                    <a href="catalogo.html" class="active">Catálogo</a>
+                    <a href="#categorias">Categorias</a>
+                    <a href="#ofertas">Ofertas</a>
+                    <a href="#contacto">Contacto</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="header-actions">
+                    <button class="icon-btn hide-mobile">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn">
+                        <a href="../login/login.html">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        </a>
+                    </button>
+                    <button class="icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn cart-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="cart-badge">3</span>
+                    </button>
+                    <button class="icon-btn show-mobile" id="mobile-menu-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="index.html">Inicio</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Catálogo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Hero -->
+    <section class="catalog-hero">
+        <div class="container">
+            <h1>Catálogo de Productos</h1>
+            <p class="catalog-subtitle">Descubre nuestra colección completa de ropa femenina importada</p>
+        </div>
+    </section>
+
+    <!-- Catalog Main Content -->
+    <section class="catalog-main">
+        <div class="container">
+            <div class="catalog-layout">
+                <!-- Sidebar Filters -->
+                <aside class="catalog-sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Categorías</h3>
+                        <div class="filter-group">
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="todas" checked>
+                                <span>Todas las categorías</span>
+                                <span class="filter-count">322</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="poleras">
+                                <span>Poleras</span>
+                                <span class="filter-count">80</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="blazers">
+                                <span>Blazers</span>
+                                <span class="filter-count">45</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="pantalones">
+                                <span>Pantalones</span>
+                                <span class="filter-count">65</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="parkas">
+                                <span>Parkas</span>
+                                <span class="filter-count">38</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="chaquetas">
+                                <span>Chaquetas</span>
+                                <span class="filter-count">52</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="trajes">
+                                <span>Trajes de Baño</span>
+                                <span class="filter-count">42</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Precio</h3>
+                        <div class="filter-group">
+                            <label class="filter-item">
+                                <input type="checkbox" name="price" value="low">
+                                <span>Menos de $20.000</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="price" value="mid1">
+                                <span>$20.000 - $40.000</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="price" value="mid2">
+                                <span>$40.000 - $60.000</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="price" value="high">
+                                <span>Más de $60.000</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Disponibilidad</h3>
+                        <div class="filter-group">
+                            <label class="filter-item">
+                                <input type="checkbox" name="stock" value="disponible">
+                                <span>En stock</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="stock" value="oferta">
+                                <span>En oferta</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="stock" value="nuevos">
+                                <span>Nuevos ingresos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn-clear-filters">Limpiar Filtros</button>
+                </aside>
+
+                <!-- Products Grid -->
+                <div class="catalog-content">
+                    <!-- Toolbar -->
+                    <div class="catalog-toolbar">
+                        <div class="toolbar-info">
+                            <p>Mostrando <strong>1-12</strong> de <strong>322</strong> productos</p>
+                        </div>
+                        <div class="toolbar-actions">
+                            <button class="filter-toggle show-mobile" id="filter-toggle">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                                </svg>
+                                Filtros
+                            </button>
+                            <select class="sort-select">
+                                <option value="popular">Más populares</option>
+                                <option value="recent">Más recientes</option>
+                                <option value="price-low">Precio: menor a mayor</option>
+                                <option value="price-high">Precio: mayor a menor</option>
+                                <option value="name">Nombre A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="catalog-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1604904612715-47bf9d9bc670?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGJsYXplcnxlbnwxfHx8fDE3NjMxMzIzNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Blazer Ejecutivo Premium" class="product-image">
+                                <span class="product-badge badge-sale">-34% OFF</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Blazers</span>
+                                <h3>Blazer Ejecutivo Premium</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$45.990</span>
+                                    <span class="price-original">$69.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1606903073578-7ca9ea9946c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBhcmthJTIwamFja2V0fGVufDF8fHx8MTc2MzEzMjM1Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Parka Acolchada Invierno" class="product-image">
+                                <span class="product-badge badge-sale">-33% OFF</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Parkas</span>
+                                <h3>Parka Acolchada Invierno</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$52.990</span>
+                                    <span class="price-original">$79.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1552902875-9ac1f9fe0c07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBhbnRzJTIwZmFzaGlvbnxlbnwxfHx8fDE3NjMxMzIzNTN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantalón Casual Elegante" class="product-image">
+                                <span class="product-badge badge-sale">-34% OFF</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Pantalones</span>
+                                <h3>Pantalón Casual Elegante</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$32.990</span>
+                                    <span class="price-original">$49.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1633626206264-c21341a34559?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHN3aW1zdWl0fGVufDF8fHx8MTc2MzEzMjM1Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Traje de Baño Verano" class="product-image">
+                                <span class="product-badge badge-new">Nuevo</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Trajes de Baño</span>
+                                <h3>Traje de Baño Verano</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$28.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1761121317492-57feee4fc674?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHNoaXJ0JTIwYmxvdXNlfGVufDF8fHx8MTc2MzUxNzA3OHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Polera Manga Larga" class="product-image">
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Poleras</span>
+                                <h3>Polera Manga Larga Elegante</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$18.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1538516089546-40b08c9c9866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGphY2tldCUyMGNvYXR8ZW58MXx8fHwxNzYzNTE3MDc5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Chaqueta de Cuero" class="product-image">
+                                <span class="product-badge badge-sale">-25% OFF</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Chaquetas</span>
+                                <h3>Chaqueta de Cuero Premium</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$59.990</span>
+                                    <span class="price-original">$79.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 7 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1572696731081-c5e50cc17700?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGNhc3VhbCUyMGRyZXNzfGVufDF8fHx8MTc2MzUxNzA3OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Vestido Casual" class="product-image">
+                                <span class="product-badge badge-new">Nuevo</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Poleras</span>
+                                <h3>Vestido Casual Primavera</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$42.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 8 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1661362559019-8a61ca325561?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHN3ZWF0ZXJ8ZW58MXx8fHwxNzYzNTE3MDc5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Sweater Tejido" class="product-image">
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Poleras</span>
+                                <h3>Sweater Tejido Abrigado</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$35.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 9 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1732708875657-814b6a6fd8fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHN1bW1lciUyMG91dGZpdHxlbnwxfHx8fDE3NjM0MzQ2MTd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Conjunto Verano" class="product-image">
+                                <span class="product-badge badge-sale">-30% OFF</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Poleras</span>
+                                <h3>Conjunto Verano Playero</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$24.990</span>
+                                    <span class="price-original">$35.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 10 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1486776396733-b352f7608a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHdpbnRlciUyMGNsb3RoZXN8ZW58MXx8fHwxNzYzNTE3MDgwfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Abrigo Invierno" class="product-image">
+                                <span class="product-badge badge-new">Nuevo</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Chaquetas</span>
+                                <h3>Abrigo Largo Invierno</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$68.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 11 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1604904612715-47bf9d9bc670?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGJsYXplcnxlbnwxfHx8fDE3NjMxMzIzNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Blazer Negro" class="product-image">
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Blazers</span>
+                                <h3>Blazer Negro Clásico</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$54.990</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 12 -->
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1552902875-9ac1f9fe0c07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBhbnRzJTIwZmFzaGlvbnxlbnwxfHx8fDE3NjMxMzIzNTN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pantalón de Vestir" class="product-image">
+                                <span class="product-badge badge-sale">-20% OFF</span>
+                                <button class="product-favorite">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                                <button class="product-quick-view">Vista Rápida</button>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Pantalones</span>
+                                <h3>Pantalón de Vestir Formal</h3>
+                                <div class="product-price">
+                                    <span class="price-current">$39.990</span>
+                                    <span class="price-original">$49.990</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn" disabled>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-dots">...</span>
+                        <button class="pagination-btn">27</button>
+                        <button class="pagination-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                        </div>
+                        <span>Tiendas Urbano</span>
+                    </div>
+                    <p class="footer-description">
+                        10 años importando ropa femenina de calidad desde China. Venta 100% online.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Comprar</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Poleras</a></li>
+                        <li><a href="#">Blazers</a></li>
+                        <li><a href="#">Pantalones</a></li>
+                        <li><a href="#">Parkas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ayuda</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Tiendas Urbano. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="catalog.js"></script>
+</body>
+</html>
