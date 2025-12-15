@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Tiendas Urbano</title>
+    <link rel="stylesheet" href="carrito-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>TIENDAS URBANO</h1>
+                    <p class="subtitle">10 años vistiendo Chile</p>
+                </div>
+                <nav class="nav">
+                    <a href="../index.html">Inicio</a>
+                    <a href="../catalogo/catalogo.html">Catálogo</a>
+                    <a href="carrito.html" class="cart-link active">
+                        <span>🛒</span>
+                        <span class="cart-count">0</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../index.html">Inicio</a>
+            <span class="separator">/</span>
+            <a href="../catalogo/catalogo.html">Catálogo</a>
+            <span class="separator">/</span>
+            <span class="current">Carrito de Compras</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="cart-header">
+            <h1>🛒 Mi Carrito</h1>
+            <div class="cart-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Carrito</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Datos</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Pago</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Content -->
+        <div class="cart-content" id="cartContent">
+            <div class="cart-main">
+                <!-- Cart Items -->
+                <div class="cart-items" id="cartItems">
+                    <!-- Los productos se cargarán aquí dinámicamente -->
+                </div>
+
+                <!-- Empty Cart Message -->
+                <div class="empty-cart" id="emptyCart" style="display: none;">
+                    <div class="empty-icon">🛒</div>
+                    <h2>Tu carrito está vacío</h2>
+                    <p>¡Agrega productos y comienza a comprar!</p>
+                    <a href="catalogo.html" class="btn-primary">Ver Catálogo</a>
+                </div>
+
+                <!-- Continue Shopping -->
+                <div class="continue-shopping" id="continueShopping">
+                    <a href="catalogo.html" class="btn-continue">
+                        <span>←</span> Continuar Comprando
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cart Sidebar -->
+            <div class="cart-sidebar" id="cartSidebar">
+                <!-- Discount Code -->
+                <div class="discount-section">
+                    <h3>¿Tienes un código de descuento?</h3>
+                    <div class="discount-input-group">
+                        <input type="text" id="discountCode" placeholder="Ingresa tu código" maxlength="20">
+                        <button class="btn-apply" id="applyDiscountBtn">Aplicar</button>
+                    </div>
+                    <div class="discount-message" id="discountMessage"></div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Resumen del Pedido</h3>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal (<span id="itemCount">0</span> productos)</span>
+                        <span class="summary-value" id="subtotalAmount">$0</span>
+                    </div>
+
+                    <div class="summary-row discount-row" id="discountRow" style="display: none;">
+                        <span>Descuento <span class="discount-label" id="discountLabel"></span></span>
+                        <span class="summary-value discount-value">-<span id="discountAmount">$0</span></span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Envío</span>
+                        <span class="summary-value" id="shippingAmount">$0</span>
+                    </div>
+
+                    <div class="shipping-info">
+                        <p class="info-text">📦 Envío a todo Chile desde bodega central</p>
+                        <div class="shipping-options">
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                <div class="option-details">
+                                    <span class="option-name">Envío Estándar</span>
+                                    <span class="option-time">3-5 días hábiles</span>
+                                </div>
+                                <span class="option-price">$3.990</span>
+                            </label>
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="express">
+                                <div class="option-details">
+                                    <span class="option-name">Envío Express</span>
+                                    <span class="option-time">1-2 días hábiles</span>
+                                </div>
+                                <span class="option-price">$6.990</span>
+                            </label>
+                            <label class="shipping-option free-shipping">
+                                <input type="radio" name="shipping" value="free" disabled>
+                                <div class="option-details">
+                                    <span class="option-name">Envío Gratis</span>
+                                    <span class="option-time">3-5 días hábiles</span>
+                                </div>
+                                <span class="option-price">$0</span>
+                            </label>
+                            <p class="free-shipping-message" id="freeShippingMessage">
+                                💰 Te faltan <strong id="freeShippingRemaining">$0</strong> para envío gratis
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span class="summary-value total-value" id="totalAmount">$0</span>
+                    </div>
+
+                    <button class="btn-checkout" id="checkoutBtn">
+                        <span>Proceder al Pago</span>
+                        <span>→</span>
+                    </button>
+
+                    <div class="security-badges">
+                        <div class="badge">
+                            <span class="badge-icon">🔒</span>
+                            <span class="badge-text">Pago Seguro</span>
+                        </div>
+                        <div class="badge">
+                            <span class="badge-icon">↩️</span>
+                            <span class="badge-text">Devolución 30 días</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="trust-section">
+                    <h4>¿Por qué comprar con nosotros?</h4>
+                    <ul class="trust-list">
+                        <li>
+                            <span class="trust-icon">✨</span>
+                            <span>10 años de experiencia</span>
+                        </li>
+                        <li>
+                            <span class="trust-icon">💰</span>
+                            <span>Precios competitivos</span>
+                        </li>
+                        <li>
+                            <span class="trust-icon">🇨🇱</span>
+                            <span>Despacho a todo Chile</span>
+                        </li>
+                        <li>
+                            <span class="trust-icon">✓</span>
+                            <span>Calidad garantizada</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggested Products -->
+        <section class="suggested-products" id="suggestedProducts">
+            <h2>También te puede interesar</h2>
+            <div class="products-grid">
+                <a href="producto.html" class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400" alt="Pantalón de Vestir">
+                        <span class="product-badge">-20%</span>
+                    </div>
+                    <h3>Pantalón de Vestir Elegante</h3>
+                    <div class="product-price">
+                        <span class="current">$24.990</span>
+                        <span class="original">$31.990</span>
+                    </div>
+                </a>
+                <a href="producto.html" class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400" alt="Camisa Elegante">
+                        <span class="product-badge">-30%</span>
+                    </div>
+                    <h3>Camisa Formal Premium</h3>
+                    <div class="product-price">
+                        <span class="current">$19.990</span>
+                        <span class="original">$28.490</span>
+                    </div>
+                </a>
+                <a href="producto.html" class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Falda Plisada">
+                    </div>
+                    <h3>Falda Plisada Moderna</h3>
+                    <div class="product-price">
+                        <span class="current">$22.990</span>
+                    </div>
+                </a>
+                <a href="producto.html" class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400" alt="Chaqueta Corta">
+                        <span class="product-badge">-25%</span>
+                    </div>
+                    <h3>Chaqueta Corta de Temporada</h3>
+                    <div class="product-price">
+                        <span class="current">$32.990</span>
+                        <span class="original">$43.990</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TIENDAS URBANO</h3>
+                    <p>10 años vistiendo a Chile con moda femenina de calidad importada.</p>
+                    <p class="experience-badge">✨ Una década de experiencia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Atención al Cliente</h4>
+                    <ul>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Envíos y Devoluciones</a></li>
+                        <li><a href="#">Métodos de Pago</a></li>
+                        <li><a href="#">Guía de Tallas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📧 contacto@tiendasurbano.cl</p>
+                    <p>📱 WhatsApp: +56 9 1234 5678</p>
+                    <p>🚚 Despacho a todo Chile</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tiendas Urbano. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Confirmar acción</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">¿Estás seguro que deseas realizar esta acción?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="modalCancelBtn">Cancelar</button>
+                <button class="btn-confirm" id="modalConfirmBtn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Acción realizada</span>
+    </div>
+
+    <script src="carrito.js"></script>
+</body>
+</html>

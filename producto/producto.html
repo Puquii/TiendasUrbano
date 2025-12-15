@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Producto - Tiendas Urbano</title>
+    <link rel="stylesheet" href="producto-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="../index.html">TIENDAS URBANO</a></h1>
+                    <p class="subtitle">10 años vistiendo Chile</p>
+                </div>
+                <nav class="nav">
+                    <a href="../index.html">Inicio</a>
+                    <a href="../catalogo/catalogo.html">Catálogo</a>
+                    <a href="../carrito/carrito.html" class="cart-link">
+                        <span>🛒</span>
+                        <span class="cart-count">0</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../index.html">Inicio</a>
+            <span class="separator">/</span>
+            <a href="../catalogo/catalogo.html">Catálogo</a>
+            <span class="separator">/</span>
+            <span class="current">Blazer Elegante</span>
+        </div>
+    </div>
+
+    <!-- Product Detail -->
+    <main class="container">
+        <div class="product-detail">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image" id="mainImageContainer">
+                    <img id="mainProductImage" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600" alt="Blazer Elegante">
+                    <div class="stock-badge" id="stockBadge">
+                        <span class="stock-icon">✓</span>
+                        <span class="stock-text">En Stock</span>
+                    </div>
+                    <button class="zoom-btn" id="zoomBtn" title="Ampliar imagen">🔍</button>
+                </div>
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=150" alt="Vista 1" class="thumbnail active">
+                    <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=150" alt="Vista 2" class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?w=150" alt="Vista 3" class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1543297057-25167a0eeb4f?w=150" alt="Vista 4" class="thumbnail">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 class="product-title">Blazer Elegante Premium</h1>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <span class="rating-count">(127 reseñas)</span>
+                    <span class="rating-average">4.2 de 5</span>
+                </div>
+
+                <div class="price-section">
+                    <div class="price-container">
+                        <span class="current-price">$29.990</span>
+                        <span class="original-price">$45.990</span>
+                        <span class="discount-badge">-35%</span>
+                    </div>
+                    <p class="price-note">💰 Precio competitivo - Importado directo desde China</p>
+                </div>
+
+                <div class="stock-info">
+                    <div class="stock-indicator" id="stockIndicator">
+                        <div class="stock-bar">
+                            <div class="stock-fill" id="stockFill"></div>
+                        </div>
+                        <p class="stock-message" id="stockMessage">¡Solo quedan <strong>8 unidades</strong> disponibles!</p>
+                    </div>
+                </div>
+
+                <div class="product-description">
+                    <h3>Descripción</h3>
+                    <p>Blazer elegante de corte moderno, perfecto para el trabajo o eventos especiales. Confeccionado con materiales de alta calidad importados directamente desde China. Diseño versátil que combina profesionalismo y estilo contemporáneo.</p>
+                    <ul class="features-list">
+                        <li>✓ Material de alta calidad</li>
+                        <li>✓ Corte moderno y favorecedor</li>
+                        <li>✓ Forrado interior</li>
+                        <li>✓ Bolsillos funcionales</li>
+                        <li>✓ Fácil de combinar</li>
+                    </ul>
+                </div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">
+                            Talla:
+                            <span class="selected-value" id="selectedSize">Selecciona una talla</span>
+                        </label>
+                        <div class="size-options" id="sizeOptions">
+                            <button class="size-btn" data-size="XS" data-stock="0">XS</button>
+                            <button class="size-btn" data-size="S" data-stock="3">S</button>
+                            <button class="size-btn" data-size="M" data-stock="8">M</button>
+                            <button class="size-btn" data-size="L" data-stock="5">L</button>
+                            <button class="size-btn" data-size="XL" data-stock="2">XL</button>
+                        </div>
+                        <a href="#" class="size-guide" id="sizeGuideBtn">📏 Guía de tallas</a>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">
+                            Color:
+                            <span class="selected-value" id="selectedColor">Selecciona un color</span>
+                        </label>
+                        <div class="color-options" id="colorOptions">
+                            <button class="color-btn" data-color="Negro" style="background-color: #25020f;" title="Negro"></button>
+                            <button class="color-btn" data-color="Vino" style="background-color: #9e1e4c;" title="Vino"></button>
+                            <button class="color-btn" data-color="Gris" style="background-color: #8f8f8f;" title="Gris"></button>
+                            <button class="color-btn" data-color="Beige" style="background-color: #c9b8a3;" title="Beige"></button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">Cantidad:</label>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" id="decreaseQty">-</button>
+                            <input type="number" id="quantityInput" value="1" min="1" max="10" readonly>
+                            <button class="qty-btn" id="increaseQty">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-add-cart" id="addToCartBtn" disabled>
+                        <span class="btn-icon">🛒</span>
+                        Agregar al Carrito
+                    </button>
+                    <button class="btn-wishlist" id="wishlistBtn">
+                        <span class="heart-icon">♡</span>
+                    </button>
+                </div>
+
+                <div class="shipping-info">
+                    <div class="info-item">
+                        <span class="icon">🚚</span>
+                        <div>
+                            <strong>Envío a todo Chile</strong>
+                            <p>Despacho desde bodega central</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">↩️</span>
+                        <div>
+                            <strong>Devolución gratis</strong>
+                            <p>30 días para cambios y devoluciones</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">🔒</span>
+                        <div>
+                            <strong>Pago seguro</strong>
+                            <p>Transacciones protegidas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="reviews-header">
+                <h2>Reseñas de Clientes</h2>
+                <button class="btn-write-review" id="writeReviewBtn">✍️ Escribir Reseña</button>
+            </div>
+
+            <div class="reviews-summary">
+                <div class="summary-rating">
+                    <div class="big-rating">4.2</div>
+                    <div class="stars-large">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p>Basado en 127 reseñas</p>
+                </div>
+
+                <div class="rating-bars">
+                    <div class="rating-bar-item">
+                        <span class="bar-label">5 ★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 60%"></div>
+                        </div>
+                        <span class="bar-count">76</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="bar-label">4 ★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 25%"></div>
+                        </div>
+                        <span class="bar-count">32</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="bar-label">3 ★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 10%"></div>
+                        </div>
+                        <span class="bar-count">13</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="bar-label">2 ★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 3%"></div>
+                        </div>
+                        <span class="bar-count">4</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="bar-label">1 ★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 2%"></div>
+                        </div>
+                        <span class="bar-count">2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-list" id="reviewsList">
+                <!-- Reviews will be loaded here by JavaScript -->
+            </div>
+
+            <button class="btn-load-more" id="loadMoreReviews">Cargar más reseñas</button>
+        </section>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <h2>Productos Relacionados</h2>
+            <div class="products-grid">
+                <a href="producto.html" class="product-card">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400" alt="Producto relacionado">
+                    <h3>Pantalón de Vestir</h3>
+                    <p class="card-price">$24.990</p>
+                </a>
+                <a href="producto.html" class="product-card">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400" alt="Producto relacionado">
+                    <h3>Camisa Elegante</h3>
+                    <p class="card-price">$19.990</p>
+                </a>
+                <a href="producto.html" class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Producto relacionado">
+                    <h3>Falda Plisada</h3>
+                    <p class="card-price">$22.990</p>
+                </a>
+                <a href="producto.html" class="product-card">
+                    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400" alt="Producto relacionado">
+                    <h3>Chaqueta Corta</h3>
+                    <p class="card-price">$32.990</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TIENDAS URBANO</h3>
+                    <p>10 años vistiendo a Chile con moda femenina de calidad importada.</p>
+                    <p class="experience-badge">✨ Una década de experiencia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Atención al Cliente</h4>
+                    <ul>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Envíos y Devoluciones</a></li>
+                        <li><a href="#">Métodos de Pago</a></li>
+                        <li><a href="#">Guía de Tallas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📧 contacto@tiendasurbano.cl</p>
+                    <p>📱 WhatsApp: +56 9 1234 5678</p>
+                    <p>🚚 Despacho a todo Chile</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tiendas Urbano. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Zoom Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img id="modalImage" src="" alt="Imagen ampliada">
+            <div class="modal-thumbnails">
+                <button class="modal-nav-btn prev" id="prevImageBtn">��</button>
+                <div class="modal-thumbs" id="modalThumbs"></div>
+                <button class="modal-nav-btn next" id="nextImageBtn">›</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-overlay" id="reviewModalOverlay"></div>
+        <div class="modal-content review-modal-content">
+            <button class="modal-close" id="reviewModalClose">&times;</button>
+            <h2>Escribir Reseña</h2>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label>Tu calificación:</label>
+                    <div class="rating-input" id="ratingInput">
+                        <span class="rating-star" data-rating="1">★</span>
+                        <span class="rating-star" data-rating="2">★</span>
+                        <span class="rating-star" data-rating="3">★</span>
+                        <span class="rating-star" data-rating="4">★</span>
+                        <span class="rating-star" data-rating="5">★</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reviewName">Tu nombre:</label>
+                    <input type="text" id="reviewName" required placeholder="Ingresa tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="reviewTitle">Título de la reseña:</label>
+                    <input type="text" id="reviewTitle" required placeholder="Resumen de tu experiencia">
+                </div>
+                <div class="form-group">
+                    <label for="reviewText">Tu reseña:</label>
+                    <textarea id="reviewText" required placeholder="Cuéntanos sobre tu experiencia con este producto..." rows="5"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelReviewBtn">Cancelar</button>
+                    <button type="submit" class="btn-submit">Publicar Reseña</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div class="modal" id="sizeGuideModal">
+        <div class="modal-overlay" id="sizeGuideOverlay"></div>
+        <div class="modal-content size-guide-content">
+            <button class="modal-close" id="sizeGuideClose">&times;</button>
+            <h2>📏 Guía de Tallas</h2>
+            <div class="size-guide-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Talla</th>
+                            <th>Busto (cm)</th>
+                            <th>Cintura (cm)</th>
+                            <th>Cadera (cm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>XS</strong></td>
+                            <td>78-82</td>
+                            <td>60-64</td>
+                            <td>86-90</td>
+                        </tr>
+                        <tr>
+                            <td><strong>S</strong></td>
+                            <td>82-86</td>
+                            <td>64-68</td>
+                            <td>90-94</td>
+                        </tr>
+                        <tr>
+                            <td><strong>M</strong></td>
+                            <td>86-90</td>
+                            <td>68-72</td>
+                            <td>94-98</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L</strong></td>
+                            <td>90-94</td>
+                            <td>72-76</td>
+                            <td>98-102</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XL</strong></td>
+                            <td>94-98</td>
+                            <td>76-80</td>
+                            <td>102-106</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="size-guide-tips">
+                <h3>💡 Consejos para medir</h3>
+                <ul>
+                    <li>Usa una cinta métrica flexible</li>
+                    <li>Mide sobre ropa interior ajustada</li>
+                    <li>No aprietes demasiado la cinta</li>
+                    <li>Si estás entre dos tallas, elige la mayor</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Producto agregado al carrito</span>
+    </div>
+
+    <script src="producto.js"></script>
+</body>
+</html>
